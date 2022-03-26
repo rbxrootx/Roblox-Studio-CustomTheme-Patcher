@@ -41,8 +41,9 @@ namespace StudioPatcher2
                     while (_kbhit() != 0) file_name += Convert.ToChar(_getch());
                 }
                 list.Add(file_name);
+                Console.WriteLine("Loaded .exe, Press Enter to continue!");
+
             }
-            Console.WriteLine("Loaded .exe, Press Enter to continue!");
             foreach (string item in list)
             {
                 string fileName = Path.GetFileName(item);
@@ -60,15 +61,15 @@ namespace StudioPatcher2
                         {
                             if (byt[i + 1] == 0x2F)
                             {
-                                if (byt[i + 2] == 0x74)
+                                if (byt[i + 2] == 0x46)
                                 {
                                  
-                                    if (byt[i + 3] == 0x68)
+                                    if (byt[i + 3] == 0x65)
                                     {
                                         byt[i] = 0x2E;
                                         byt[i + 1] = 0x2F;
-                                        byt[i + 2] = 0x74;
-                                        byt[i + 3] = 0x68;
+                                        byt[i + 2] = 0x46;
+                                        byt[i + 3] = 0x65;
                                         Console.WriteLine("Found byte & Patching " + byt[i]);
                                     }
                                 }
@@ -78,17 +79,26 @@ namespace StudioPatcher2
                     Console.WriteLine("Found Bytes and Patched RobloxStudioBeta");
                     Console.WriteLine("Creating Folders");
 
-                    string folder = Path.Combine(Environment.CurrentDirectory, "themes");
+                    string folder = Path.Combine(Environment.CurrentDirectory, "Features");
                     if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
+                    string resourceFolder = Path.Combine(folder, "Resources");
 
-                    string darkTheme = Path.Combine(folder, "DarkTheme.json");
-                    string lightTheme = Path.Combine(folder, "LightTheme.json");
+                    if (!Directory.Exists(resourceFolder)) Directory.CreateDirectory(resourceFolder);
+                    string themeFolder = Path.Combine(resourceFolder, "themes");
 
-                    File.WriteAllText(darkTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\DarkTheme.json"));
-                    File.WriteAllText(lightTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\LightTheme.json"));
 
-                    File.WriteAllBytes("./RobloxStudioPatched.exe", byt);
-                    Console.WriteLine("File has been saved too " + Environment.CurrentDirectory);
+                    if (!Directory.Exists(themeFolder)) Directory.CreateDirectory(themeFolder);
+                    {
+                        string darkTheme = Path.Combine(themeFolder, "DarkTheme.json");
+                        string lightTheme = Path.Combine(themeFolder, "LightTheme.json");
+
+                        File.WriteAllText(darkTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\DarkTheme.json"));
+                        File.WriteAllText(lightTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\LightTheme.json"));
+
+                        File.WriteAllBytes("./RobloxStudioPatched.exe", byt);
+                        Console.WriteLine("File has been saved too " + Environment.CurrentDirectory);
+                    }
+
                 }
                 else
                 {
