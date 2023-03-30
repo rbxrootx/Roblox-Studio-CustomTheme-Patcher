@@ -61,15 +61,15 @@ namespace StudioPatcher2
                         {
                             if (byt[i + 1] == 0x2F)
                             {
-                                if (byt[i + 2] == 0x46)
+                                if (byt[i + 2] == 0x50)
                                 {
                                  
-                                    if (byt[i + 3] == 0x65)
+                                    if (byt[i + 3] == 0x6C)
                                     {
                                         byt[i] = 0x2E;
                                         byt[i + 1] = 0x2F;
-                                        byt[i + 2] = 0x46;
-                                        byt[i + 3] = 0x65;
+                                        byt[i + 2] = 0x50;
+                                        byt[i + 3] = 0x6C;
                                         Console.WriteLine("Found byte & Patching " + byt[i]);
                                     }
                                 }
@@ -79,9 +79,12 @@ namespace StudioPatcher2
                     Console.WriteLine("Found Bytes and Patched RobloxStudioBeta");
                     Console.WriteLine("Creating Folders");
 
-                    string folder = Path.Combine(Environment.CurrentDirectory, "Features");
+                    string folder = Path.Combine(Environment.CurrentDirectory, "Platform");
                     if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
-                    string resourceFolder = Path.Combine(folder, "Resources");
+                    string resourceFolder = Path.Combine(folder, "Base");
+
+                    if (!Directory.Exists(resourceFolder)) Directory.CreateDirectory(resourceFolder);
+                    string QTFolder = Path.Combine(resourceFolder, "QtUi");
 
                     if (!Directory.Exists(resourceFolder)) Directory.CreateDirectory(resourceFolder);
                     string themeFolder = Path.Combine(resourceFolder, "themes");
