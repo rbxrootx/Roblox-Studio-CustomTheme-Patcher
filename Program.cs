@@ -84,9 +84,9 @@ namespace StudioPatcher2
                     string resourceFolder = Path.Combine(folder, "Base");
 
                     if (!Directory.Exists(resourceFolder)) Directory.CreateDirectory(resourceFolder);
-                    string QTFolder = Path.Combine(resourceFolder, "QtUi");
+                    string QTFolder = Path.Combine(resourceFolder, "QtUI");
 
-                    if (!Directory.Exists(resourceFolder)) Directory.CreateDirectory(resourceFolder);
+                    if (!Directory.Exists(QTFolder)) Directory.CreateDirectory(resourceFolder);
                     string themeFolder = Path.Combine(resourceFolder, "themes");
 
 
