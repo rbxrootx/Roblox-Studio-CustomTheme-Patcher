@@ -98,8 +98,14 @@ namespace StudioPatcher2
                         File.WriteAllText(darkTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\DarkTheme.json"));
                         File.WriteAllText(lightTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\LightTheme.json"));
 
-                        File.WriteAllBytes("./RobloxStudioPatched.exe", byt);
-                        Console.WriteLine("File has been saved too " + Environment.CurrentDirectory);
+                        // Get the original path 
+                        string originalFilePath = Path.GetFullPath(item);
+                        string originalDirectory = Path.GetDirectoryName(originalFilePath);
+
+                        // Save the patched file to the original path
+                        string patchedFilePath = Path.Combine(originalDirectory, "RobloxStudioPatched.exe");
+                        File.WriteAllBytes(patchedFilePath, byt);
+                        Console.WriteLine("File has been saved to " + originalDirectory);
                     }
 
                 }
