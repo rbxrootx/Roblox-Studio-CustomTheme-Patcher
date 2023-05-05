@@ -29,4 +29,4 @@ You can compile the project from the provided source code if you wish.
 
 ## VirusTotal Scan
 
-[VirusTotal - File - d1fbbd50702ec997f934e34387442586590d8786c4e2d97f4c719a2aa8c01632](https://www.virustotal.com/gui/file/d1fbbd50702ec997f934e34387442586590d8786c4e2d97f4c719a2aa8c01632?nocache=1)
+[VirusTotal - File - StudioPatcher2.exe](https://www.virustotal.com/gui/file/d1fbbd50702ec997f934e34387442586590d8786c4e2d97f4c719a2aa8c01632?nocache=1)
