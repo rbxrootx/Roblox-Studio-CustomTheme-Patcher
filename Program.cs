@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Windows.Forms;
+using System.Linq;
 
 
 // I apologize for the horrible code.
@@ -14,6 +16,7 @@ namespace StudioPatcher2
 
         [DllImport("msvcrt")] static extern int _getch();
         [DllImport("crtdll.dll")] public static extern int _kbhit();
+        [STAThread]
         static void Main(string[] args)
         {
             Console.WriteLine(@"
@@ -26,24 +29,25 @@ namespace StudioPatcher2
                                                                       
                                                                       
         ");
-            Console.WriteLine("Please Drag & Drop RobloxStudioBeta.exe onto this window.");
-            var list = new List<String>();
-            for (int ch = _getch(); ch != '\r'; ch = _getch())
-            {
-                string file_name = "";
-                if (Convert.ToChar(ch) == '\"')
-                {
-                    while (Convert.ToChar(ch = _getch()) != '\"') file_name += Convert.ToChar(ch);
-                }
-                else
-                {
-                    file_name += Convert.ToChar(ch);
-                    while (_kbhit() != 0) file_name += Convert.ToChar(_getch());
-                }
-                list.Add(file_name);
-                Console.WriteLine("Loaded .exe, Press Enter to continue!");
+            Console.WriteLine("Please select RobloxStudioBeta.exe.");
 
-            }
+            // Gets the path with RobloxStudioBeta.exe in it
+            string appDataFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string versionsFolderPath = Path.Combine(appDataFolderPath, "Roblox", "Versions");
+            var versionsDir = Directory.GetDirectories(versionsFolderPath);
+            string targetDir = versionsDir.FirstOrDefault(dir => File.Exists(Path.Combine(dir, "RobloxStudioBeta.exe")));
+
+            // Prompt the user to select a file from the target directory
+            var dialog = new OpenFileDialog();
+            dialog.InitialDirectory = targetDir;
+            dialog.Filter = "Roblox Studio|RobloxStudioBeta.exe";
+            dialog.Title = "Select RobloxStudioBeta.exe";
+            dialog.ShowDialog();
+
+            // Load the .exe into a list
+            var list = new List<string> { dialog.FileName };
+            Console.WriteLine("Loaded .exe, Press Enter to continue!");
+
             foreach (string item in list)
             {
                 string fileName = Path.GetFileName(item);
