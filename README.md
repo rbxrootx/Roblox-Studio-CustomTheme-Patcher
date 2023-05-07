@@ -4,6 +4,8 @@
 
 Enables the loading of custom themes into Roblox Studio.
 
+![StudioPatcher2](https://user-images.githubusercontent.com/80087248/236652960-d87e7c99-71d7-483d-8067-d92f7a8a703d.png)
+
 ## Usage
 
 ### GitHub
@@ -16,11 +18,13 @@ Enables the loading of custom themes into Roblox Studio.
 
 4. Once you have finished changing theme files, navigate back and double-click `StudioPatcher2.exe` to launch it, a terminal should open (A [false positive](#false-positives) might appear when you open `StudioPatcher2.exe`; you can click <kbd>More info</kbd> > <kbd>Run anyway</kbd>)
 
-5. Locate `RobloxStudioBeta.exe`, which should be located around `%APPDATA%\..\Local\Roblox\Versions\version-VERSION_NUMBER_HERE\RobloxStudioBeta.exe` and drag it into the terminal window
+5. In the file dialog window, select `RobloxStudioBeta.exe` and click <kbd>Open</kbd> to load the file
 
-6. Press <kbd>Enter</kbd> and wait for the patching process to finish
+6. Press <kbd>Enter</kbd> on your keyboard and wait for the patching process to finish.
 
-7. Launch `RobloxStudioPatched.exe`, which should be in the same path as `RobloxStudioBeta.exe`, and enjoy your custom themes (If the patch is in the `Release` folder, you need manually move it to the same path as `RobloxStudioBeta.exe`)
+5. When the patching is finished a confirmation should appear, you can press <kbd>Enter</kbd> on your keyboard to safely exit the patcher
+
+7. Launch `RobloxStudioPatched.exe`, which should be in the same path as `RobloxStudioBeta.exe` and enjoy your custom themes
 
 ## False Positives
 
