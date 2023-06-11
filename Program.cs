@@ -110,6 +110,10 @@ namespace StudioPatcher2
                         string patchedFilePath = Path.Combine(originalDirectory, "RobloxStudioPatched.exe");
                         File.WriteAllBytes(patchedFilePath, byt);
                         Console.WriteLine("File has been saved to " + originalDirectory);
+
+                        // Open file explorer with patched file selected and close console
+                        System.Diagnostics.Process.Start("explorer.exe", "/select, \"" + patchedFilePath + "\"");
+                        Environment.Exit(0);
                     }
 
                 }
