@@ -2,7 +2,7 @@
 
 # Roblox Studio CustomTheme Patcher (DEPRECATED)
 
-**NOTE: This tool has been deprecated in favor of the new tool called StudioManager. StudioManager is re-written in Electron to provide a better UI and flexibility. **
+**NOTE: This tool has been deprecated in favor of the new tool called StudioManager. StudioManager is re-written to provide a better UI and flexibility. **
 
 Enables the loading of custom themes into Roblox Studio.
 
