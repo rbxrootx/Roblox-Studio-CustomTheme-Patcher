@@ -1,12 +1,14 @@
 <img align=right src="main.ico" />
 
-# Roblox Studio CustomTheme Patcher
+# Roblox Studio CustomTheme Patcher (DEPRECATED)
+
+**NOTE: This tool has been deprecated in favor of the new tool called StudioManager. StudioManager is re-written in Electron to provide a better UI and flexibility. **
 
 Enables the loading of custom themes into Roblox Studio.
 
 ![StudioPatcher2](https://user-images.githubusercontent.com/80087248/236652960-d87e7c99-71d7-483d-8067-d92f7a8a703d.png)
 
-## Usage
+## Usage (Deprecated)
 
 ### GitHub
 
@@ -28,8 +30,7 @@ Enables the loading of custom themes into Roblox Studio.
 
 ## False Positives
 
-Your browser or OS may detect that the compiled binary is a virus. This is due to it patching bytes in the .exe.
-You can compile the project from the provided source code if you wish.
+Your browser or OS may detect that the compiled binary is a virus. This is due to it patching bytes in the .exe. You can compile the project from the provided source code if you wish.
 
 ## VirusTotal Scan
 
