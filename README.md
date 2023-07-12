@@ -1,7 +1,6 @@
 <img align=right src="main.ico" />
 
-Enables the loading of custom themes into Roblox Studio.
-
+## Enables the loading of custom themes into Roblox Studio.
 ![StudioPatcher2](https://user-images.githubusercontent.com/80087248/236652960-d87e7c99-71d7-483d-8067-d92f7a8a703d.png)
 
 ## Usage
