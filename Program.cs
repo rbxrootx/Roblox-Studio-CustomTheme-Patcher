@@ -113,37 +113,29 @@ namespace StudioPatcher2
                     Console.WriteLine("Found Bytes and Patched RobloxStudioBeta");
                     Console.WriteLine("Creating Folders");
 
-                    string folder = Path.Combine(Environment.CurrentDirectory, "Platform");
-                    if (!Directory.Exists(folder)) Directory.CreateDirectory(folder);
-                    string resourceFolder = Path.Combine(folder, "Base");
+                    // Define the folder structure
+                    string folderPath = Path.Combine(Environment.CurrentDirectory, "Platform", "Base", "QtUI", "themes");
 
-                    if (!Directory.Exists(resourceFolder)) Directory.CreateDirectory(resourceFolder);
-                    string QTFolder = Path.Combine(resourceFolder, "QtUI");
+                    // Create all the directories in the specified path
+                    Directory.CreateDirectory(folderPath);
 
-                    if (!Directory.Exists(QTFolder)) Directory.CreateDirectory(resourceFolder);
-                    string themeFolder = Path.Combine(resourceFolder, "themes");
+                    string darkTheme = Path.Combine(folderPath, "DarkTheme.json");
+                    string lightTheme = Path.Combine(folderPath, "LightTheme.json");
 
-                    if (!Directory.Exists(themeFolder)) Directory.CreateDirectory(themeFolder);
-                    {
-                        string darkTheme = Path.Combine(themeFolder, "DarkTheme.json");
-                        string lightTheme = Path.Combine(themeFolder, "LightTheme.json");
+                    File.WriteAllText(darkTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\DarkTheme.json"));
+                    File.WriteAllText(lightTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\LightTheme.json"));
 
-                        File.WriteAllText(darkTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\DarkTheme.json"));
-                        File.WriteAllText(lightTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\LightTheme.json"));
+                    // Get the original path 
+                    string originalFilePath = Path.GetFullPath(item);
+                    string originalDirectory = Path.GetDirectoryName(originalFilePath);
 
-                        // Get the original path 
-                        string originalFilePath = Path.GetFullPath(item);
-                        string originalDirectory = Path.GetDirectoryName(originalFilePath);
+                    // Save the patched file to the original path
+                    string patchedFilePath = Path.Combine(originalDirectory, "RobloxStudioPatched.exe");
+                    File.WriteAllBytes(patchedFilePath, byt);
+                    Console.WriteLine("File has been saved to " + originalDirectory);
 
-                        // Save the patched file to the original path
-                        string patchedFilePath = Path.Combine(originalDirectory, "RobloxStudioPatched.exe");
-                        File.WriteAllBytes(patchedFilePath, byt);
-                        Console.WriteLine("File has been saved to " + originalDirectory);
-
-                        // Open file explorer with patched file selected and close console
-                        System.Diagnostics.Process.Start("explorer.exe", "/select, \"" + patchedFilePath + "\"");
-                    }
-
+                    // Open file explorer with patched file selected and close console
+                    System.Diagnostics.Process.Start("explorer.exe", "/select, \"" + patchedFilePath + "\"");
                 }
                 else
                 {
