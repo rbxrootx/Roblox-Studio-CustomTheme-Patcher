@@ -3,8 +3,9 @@
 ## Enables the loading of custom themes into Roblox Studio.
 ![StudioPatcher2](https://user-images.githubusercontent.com/80087248/236652960-d87e7c99-71d7-483d-8067-d92f7a8a703d.png)
 
-
+## Example Theme
 ![image](https://github.com/rbxrootx/Roblox-Studio-CustomTheme-Patcher/assets/22184962/e3394825-7f3e-4499-bba7-cec32e46a8af)
+
 [Midnight Theme](https://github.com/rbxrootx/Roblox-Studio-CustomTheme-Patcher/blob/main/ExampleThemes/Midnight/DarkTheme.json)
 
 ## Usage
