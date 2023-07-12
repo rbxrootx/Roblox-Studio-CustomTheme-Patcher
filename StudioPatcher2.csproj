@@ -8,10 +8,11 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>StudioPatcher2</RootNamespace>
     <AssemblyName>StudioPatcher2</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -35,15 +36,31 @@
   <PropertyGroup>
     <ApplicationIcon>main.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>StudioPatcher2.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="ReaLTaiizor, Version=3.7.9.3, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\ReaLTaiizor.3.7.9.3\lib\net481\ReaLTaiizor.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Common, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.Drawing.Common.6.0.0\lib\net461\System.Drawing.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Wpf.Ui, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\WPF-UI.2.0.3\lib\net47\Wpf.Ui.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -56,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
     <None Include="Resources\DarkTheme.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

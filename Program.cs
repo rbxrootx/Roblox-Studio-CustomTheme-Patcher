@@ -1,34 +1,65 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 using System.Linq;
-
-
-// I apologize for the horrible code.
+using System.Collections.Generic;
 
 namespace StudioPatcher2
 {
     class Program
     {
-
         [DllImport("msvcrt")] static extern int _getch();
         [DllImport("crtdll.dll")] public static extern int _kbhit();
         [STAThread]
         static void Main(string[] args)
         {
-            Console.WriteLine(@"
-           _____ _             _ _         _____      _       _               
-          / ____| |           | (_)       |  __ \    | |     | |              
-         | (___ | |_ _   _  __| |_  ___   | |__) |_ _| |_ ___| |__   ___ _ __ 
-          \___ \| __| | | |/ _` | |/ _ \  |  ___/ _` | __/ __| '_ \ / _ \ '__|
-          ____) | |_| |_| | (_| | | (_) | | |  | (_| | || (__| | | |  __/ |   
-         |_____/ \__|\__,_|\__,_|_|\___/  |_|   \__,_|\__\___|_| |_|\___|_|   
-                                                                      
-                                                                      
-        ");
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine(@"
+            _____ _             _ _         _____      _       _               
+            / ____| |           | (_)       |  __ \    | |     | |              
+            | (___ | |_ _   _  __| |_  ___   | |__) |_ _| |_ ___| |__   ___ _ __ 
+            \___ \| __| | | |/ _` | |/ _ \  |  ___/ _` | __/ __| '_ \ / _ \ '__|
+            ____) | |_| |_| | (_| | | (_) | | |  | (_| | || (__| | | |  __/ |   
+            |_____/ \__|\__,_|\__,_|_|\___/  |_|   \__,_|\__\___|_| |_|\___|_|   
+
+            ");
+
+                Console.WriteLine("Please choose an option:");
+                Console.WriteLine("1. Patch Studio");
+                Console.WriteLine("2. Get Latest Resource Files");
+                Console.WriteLine("3. Exit");
+
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        PatchStudio();
+                        break;
+
+                    case "2":
+                        GetLatestResourceFiles();
+                        break;
+
+                    case "3":
+                        Environment.Exit(0);
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice. Please choose 1, 2 or 3.");
+                        Thread.Sleep(2000);
+                        break;
+                }
+            }
+        }
+
+        static void PatchStudio()
+        {
             Console.WriteLine("Please select RobloxStudioBeta.exe.");
 
             // Gets the path with RobloxStudioBeta.exe in it
@@ -67,7 +98,6 @@ namespace StudioPatcher2
                             {
                                 if (byt[i + 2] == 0x50)
                                 {
-                                 
                                     if (byt[i + 3] == 0x6C)
                                     {
                                         byt[i] = 0x2E;
@@ -93,7 +123,6 @@ namespace StudioPatcher2
                     if (!Directory.Exists(QTFolder)) Directory.CreateDirectory(resourceFolder);
                     string themeFolder = Path.Combine(resourceFolder, "themes");
 
-
                     if (!Directory.Exists(themeFolder)) Directory.CreateDirectory(themeFolder);
                     {
                         string darkTheme = Path.Combine(themeFolder, "DarkTheme.json");
@@ -113,7 +142,6 @@ namespace StudioPatcher2
 
                         // Open file explorer with patched file selected and close console
                         System.Diagnostics.Process.Start("explorer.exe", "/select, \"" + patchedFilePath + "\"");
-                        Environment.Exit(0);
                     }
 
                 }
@@ -124,6 +152,32 @@ namespace StudioPatcher2
             }
             Console.WriteLine("Press any key to end...");
             Console.Read();
+        }
+
+        static void GetLatestResourceFiles()
+        {
+            string folderPath = Path.Combine(Environment.CurrentDirectory, "Platform", "Base", "QtUI", "themes");
+
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            using (WebClient client = new WebClient())
+            {
+                string darkThemeURL = "https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/roblox/QtResources/Platform/Base/QtUI/themes/DarkTheme.json";
+                string lightThemeURL = "https://raw.githubusercontent.com/MaximumADHD/Roblox-Client-Tracker/roblox/QtResources/Platform/Base/QtUI/themes/LightTheme.json";
+
+                string darkThemeFilePath = Path.Combine(folderPath, "DarkTheme.json");
+                string lightThemeFilePath = Path.Combine(folderPath, "LightTheme.json");
+
+                client.DownloadFile(new Uri(darkThemeURL), darkThemeFilePath);
+                client.DownloadFile(new Uri(lightThemeURL), lightThemeFilePath);
+            }
+
+            Console.WriteLine("Latest resource files downloaded successfully!", folderPath);
+            Console.WriteLine("Press any key to return to the main menu...");
+            Console.ReadKey();
         }
     }
 }
