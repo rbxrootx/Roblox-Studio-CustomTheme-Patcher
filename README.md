@@ -1,14 +1,9 @@
 <img align=right src="main.ico" />
 
-# Roblox Studio CustomTheme Patcher (DEPRECATED)
-
-**NOTE: This tool has been deprecated in favor of the new tool called StudioManager. StudioManager is re-written to provide a better UI and flexibility. **
-
-Enables the loading of custom themes into Roblox Studio.
-
+## Enables the loading of custom themes into Roblox Studio.
 ![StudioPatcher2](https://user-images.githubusercontent.com/80087248/236652960-d87e7c99-71d7-483d-8067-d92f7a8a703d.png)
 
-## Usage (Deprecated)
+## Usage
 
 ### GitHub
 
