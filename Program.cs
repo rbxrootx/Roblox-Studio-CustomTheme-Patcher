@@ -125,6 +125,16 @@ namespace StudioPatcher2
                     File.WriteAllText(darkTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\DarkTheme.json"));
                     File.WriteAllText(lightTheme, System.IO.File.ReadAllText(Environment.CurrentDirectory + @"\Resources\LightTheme.json"));
 
+                    // Move Platform folder to the same directory as the patched file
+                    string platformPath = Path.Combine(Environment.CurrentDirectory, "Platform");
+                    string platformDestination = Path.Combine(Path.GetDirectoryName(item), "Platform");
+
+                    if (Directory.Exists(platformDestination))
+                    {
+                        Directory.Delete(platformDestination, true);
+                    }
+                    Directory.Move(platformPath, platformDestination);
+
                     // Get the original path 
                     string originalFilePath = Path.GetFullPath(item);
                     string originalDirectory = Path.GetDirectoryName(originalFilePath);
